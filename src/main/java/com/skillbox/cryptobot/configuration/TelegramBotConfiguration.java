@@ -3,6 +3,7 @@ package com.skillbox.cryptobot.configuration;
 
 import com.skillbox.cryptobot.bot.CryptoBot;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -22,5 +23,10 @@ public class TelegramBotConfiguration {
             log.error("Error occurred while sending message to telegram!", e);
         }
         return botsApi;
+    }
+
+    @Bean
+    public Integer frequency(@Value("${telegram.bot.notify.delay.value}") Integer frequency) {
+        return frequency;
     }
 }
